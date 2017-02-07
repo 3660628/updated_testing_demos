@@ -1,0 +1,13 @@
+# 
+# Definition of all trackable objects
+# Identifier corresponds to Trackable ID set in Tracking Tools
+#
+rigid_bodies:
+    '1':
+        pose: UAV_IP5/pose
+    '2':
+        pose: UAV_IP6/pose
+    '3':
+        pose: UAV_IP7/pose
+    '4':
+        pose: UAV_IP8/pose

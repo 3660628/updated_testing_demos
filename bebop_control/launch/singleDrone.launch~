@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<launch>
+  <node name="bebop_control" pkg="bebop_control" type="singleDrone" />
+  <node name="joy_node" pkg="joy" type="joy_node" />
+  <node pkg="mocap_optitrack"
+    type="mocap_node"
+    name="mocap_node"
+    respawn="false"
+    launch-prefix=""
+    required="true">
+    <rosparam file="$(find mocap_optitrack)/config/mocap.yaml" command="load" />
+  </node>
+    <arg name="namespace" default="bebop_IP5" />
+    <arg name="ip" default="192.168.1.5" />
+    <arg name="config_file" default="$(find bebop_driver)/config/defaults.yaml" />
+    <group ns="$(arg namespace)">
+        <node pkg="bebop_driver" name="bebop_driver_5" type="bebop_driver_node" output="screen">
+            <param name="bebop_ip" value="$(arg ip)" />
+            <rosparam command="load" file="$(arg config_file)" />
+        </node>       
+    </group>
+</launch>
