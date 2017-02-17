@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<launch>
+  <node name="bebop_control" pkg="bebop_control" type="manual_control" />
+  <node name="joy_node" pkg="joy" type="joy_node" />
+</launch>
