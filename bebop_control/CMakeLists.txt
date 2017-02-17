@@ -28,3 +28,7 @@ add_dependencies(sumo2bebop1 sumo2bebop1_generate_messages_cpp)
 add_executable(singleDrone src/singleDrone.cpp)
 target_link_libraries(singleDrone ${catkin_LIBRARIES})
 add_dependencies(singleDrone singleDrone_generate_messages_cpp)
+
+add_executable(manual_control src/manual_control.cpp)
+target_link_libraries(manual_control ${catkin_LIBRARIES})
+add_dependencies(manual_control manual_control_generate_messages_cpp)
