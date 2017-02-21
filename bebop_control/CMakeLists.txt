@@ -32,3 +32,8 @@ add_dependencies(singleDrone singleDrone_generate_messages_cpp)
 add_executable(manual_control src/manual_control.cpp)
 target_link_libraries(manual_control ${catkin_LIBRARIES})
 add_dependencies(manual_control manual_control_generate_messages_cpp)
+
+add_executable(vicon_test src/vicon_test.cpp)
+target_link_libraries(vicon_test ${catkin_LIBRARIES})
+add_dependencies(vicon_test vicon_test_generate_messages_cpp)
+target_link_libraries(vicon_test ${OpenCV_LIBRARIES})
