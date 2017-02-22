@@ -47,6 +47,7 @@ Written by Ric Fehr
 #include <geometry_msgs/Point.h>
 
 #include <geometry_msgs/PoseStamped.h>
+#include <geometry_msgs/TransformStamped.h>
 #include <tf/transform_datatypes.h>
 
 #include <stdio.h>
@@ -120,15 +121,15 @@ void getJoy(const sensor_msgs::Joy::ConstPtr& button)
 // Get position info from mocap for bebop1
 void getPosBebop1(const geometry_msgs::PoseStamped::ConstPtr& pos)
 {
-	bebop1.pos_x = pos->pose.position.x;
-	bebop1.pos_y = pos->pose.position.y;
-	bebop1.pos_z = pos->pose.position.z;
-	bebop1.ori_x = pos->pose.orientation.x;
-	bebop1.ori_y = pos->pose.orientation.y;
-	bebop1.ori_z = pos->pose.orientation.z;
-	bebop1.ori_w = pos->pose.orientation.w;
+	bebop1.pos_x = pos->transform.translation.x;
+	bebop1.pos_y = pos->transform.translation.y;
+	bebop1.pos_z = pos->transform.translation.z;
+	bebop1.ori_x = pos->transform.rotation.x;
+	bebop1.ori_y = pos->transform.rotation.y;
+	bebop1.ori_z = pos->transform.rotation.z;
+	bebop1.ori_w = pos->transform.rotation.w;
 
-	tf::Quaternion q(pos->pose.orientation.x,pos->pose.orientation.y,pos->pose.orientation.z,pos->pose.orientation.w);
+	tf::Quaternion q(pos->transform.rotation.x,pos->transform.rotation.y,pos->transform.rotation.z,pos->transform.rotation.w);
 	tf::Matrix3x3 m(q);
 	m.getRPY(bebop1.roll, bebop1.pitch, bebop1.yaw_RAD);
 	bebop1.yaw = bebop1.yaw_RAD*(180/PI);
