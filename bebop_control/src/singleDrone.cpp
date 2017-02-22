@@ -119,7 +119,7 @@ void getJoy(const sensor_msgs::Joy::ConstPtr& button)
 }
 
 // Get position info from mocap for bebop1
-void getPosBebop1(const geometry_msgs::PoseStamped::ConstPtr& pos)
+void getPosBebop1(const geometry_msgs::TransformStamped::ConstPtr& pos)
 {
 	bebop1.pos_x = pos->transform.translation.x;
 	bebop1.pos_y = pos->transform.translation.y;
@@ -135,7 +135,7 @@ void getPosBebop1(const geometry_msgs::PoseStamped::ConstPtr& pos)
 	bebop1.yaw = bebop1.yaw_RAD*(180/PI);
 }
 
-void getPosBebop2(const geometry_msgs::PoseStamped::ConstPtr& pos)
+void getPosBebop2(const geometry_msgs::TransformStamped::ConstPtr& pos)
 {
 	bebop2.pos_x = pos->transform.translation.x;
 	bebop2.pos_y = pos->transform.translation.y;
@@ -151,7 +151,7 @@ void getPosBebop2(const geometry_msgs::PoseStamped::ConstPtr& pos)
 	bebop2.yaw = bebop2.yaw_RAD*(180/PI);
 }
 
-void getPosBebop3(const geometry_msgs::PoseStamped::ConstPtr& pos)
+void getPosBebop3(const geometry_msgs::TransformStamped::ConstPtr& pos)
 {
 	bebop3.pos_x = pos->transform.translation.x;
 	bebop3.pos_y = pos->transform.translation.y;
@@ -167,7 +167,7 @@ void getPosBebop3(const geometry_msgs::PoseStamped::ConstPtr& pos)
 	bebop3.yaw = bebop3.yaw_RAD*(180/PI);
 }
 
-void getPosBebop4(const geometry_msgs::PoseStamped::ConstPtr& pos)
+void getPosBebop4(const geometry_msgs::TransformStamped::ConstPtr& pos)
 {
 	bebop4.pos_x = pos->transform.translation.x;
 	bebop4.pos_y = pos->transform.translation.y;
