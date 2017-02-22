@@ -46,6 +46,7 @@ Written by Ric Fehr
 #include <std_msgs/UInt8.h>
 
 #include <geometry_msgs/PoseStamped.h>
+#include <geometry_msgs/TransformStamped.h>
 #include <tf/transform_datatypes.h>
 
 #include <stdio.h>
@@ -113,15 +114,15 @@ bool altYawControl = true;
 // Get position info from mocap for bebop1
 void getPosBebop1(const geometry_msgs::PoseStamped::ConstPtr& pos)
 {
-	bebop1.pos_x = pos->pose.position.x;
-	bebop1.pos_y = pos->pose.position.y;
-	bebop1.pos_z = pos->pose.position.z;
-	bebop1.ori_x = pos->pose.orientation.x;
-	bebop1.ori_y = pos->pose.orientation.y;
-	bebop1.ori_z = pos->pose.orientation.z;
-	bebop1.ori_w = pos->pose.orientation.w;
+	bebop1.pos_x = pos->transform.translation.x;
+	bebop1.pos_y = pos->transform.translation.y;
+	bebop1.pos_z = pos->transform.translation.z;
+	bebop1.ori_x = pos->transform.rotation.x;
+	bebop1.ori_y = pos->transform.rotation.y;
+	bebop1.ori_z = pos->transform.rotation.z;
+	bebop1.ori_w = pos->transform.rotation.w;
 
-	tf::Quaternion q(pos->pose.orientation.x,pos->pose.orientation.y,pos->pose.orientation.z,pos->pose.orientation.w);
+	tf::Quaternion q(pos->transform.rotation.x,pos->transform.rotation.y,pos->transform.rotation.z,pos->transform.rotation.w);
 	tf::Matrix3x3 m(q);
 	m.getRPY(bebop1.roll, bebop1.pitch, bebop1.yaw_RAD);
 	bebop1.yaw = bebop1.yaw_RAD*(180/PI);
@@ -129,15 +130,15 @@ void getPosBebop1(const geometry_msgs::PoseStamped::ConstPtr& pos)
 
 void getPosBebop2(const geometry_msgs::PoseStamped::ConstPtr& pos)
 {
-	bebop2.pos_x = pos->pose.position.x;
-	bebop2.pos_y = pos->pose.position.y;
-	bebop2.pos_z = pos->pose.position.z;
-	bebop2.ori_x = pos->pose.orientation.x;
-	bebop2.ori_y = pos->pose.orientation.y;
-	bebop2.ori_z = pos->pose.orientation.z;
-	bebop2.ori_w = pos->pose.orientation.w;
+	bebop2.pos_x = pos->transform.translation.x;
+	bebop2.pos_y = pos->transform.translation.y;
+	bebop2.pos_z = pos->transform.translation.z;
+	bebop2.ori_x = pos->transform.rotation.x;
+	bebop2.ori_y = pos->transform.rotation.y;
+	bebop2.ori_z = pos->transform.rotation.z;
+	bebop2.ori_w = pos->transform.rotation.w;
 
-	tf::Quaternion q(pos->pose.orientation.x,pos->pose.orientation.y,pos->pose.orientation.z,pos->pose.orientation.w);
+	tf::Quaternion q(pos->transform.rotation.x,pos->transform.rotation.y,pos->transform.rotation.z,pos->transform.rotation.w);
 	tf::Matrix3x3 m(q);
 	m.getRPY(bebop2.roll, bebop2.pitch, bebop2.yaw_RAD);
 	bebop2.yaw = bebop2.yaw_RAD*(180/PI);
@@ -145,32 +146,31 @@ void getPosBebop2(const geometry_msgs::PoseStamped::ConstPtr& pos)
 
 void getPosBebop3(const geometry_msgs::PoseStamped::ConstPtr& pos)
 {
-	bebop3.pos_x = pos->pose.position.x;
-	bebop3.pos_y = pos->pose.position.y;
-	bebop3.pos_z = pos->pose.position.z;
-	bebop3.ori_x = pos->pose.orientation.x;
-	bebop3.ori_y = pos->pose.orientation.y;
-	bebop3.ori_z = pos->pose.orientation.z;
-	bebop3.ori_w = pos->pose.orientation.w;
+	bebop3.pos_x = pos->transform.translation.x;
+	bebop3.pos_y = pos->transform.translation.y;
+	bebop3.pos_z = pos->transform.translation.z;
+	bebop3.ori_x = pos->transform.rotation.x;
+	bebop3.ori_y = pos->transform.rotation.y;
+	bebop3.ori_z = pos->transform.rotation.z;
+	bebop3.ori_w = pos->transform.rotation.w;
 
-	tf::Quaternion q(pos->pose.orientation.x,pos->pose.orientation.y,pos->pose.orientation.z,pos->pose.orientation.w);
+	tf::Quaternion q(pos->transform.rotation.x,pos->transform.rotation.y,pos->transform.rotation.z,pos->transform.rotation.w);
 	tf::Matrix3x3 m(q);
 	m.getRPY(bebop3.roll, bebop3.pitch, bebop3.yaw_RAD);
 	bebop3.yaw = bebop3.yaw_RAD*(180/PI);
 }
 
-// Get position info from mocap for sumo
 void getPosSumo(const geometry_msgs::PoseStamped::ConstPtr& pos)
 {
-	sumo.pos_x = pos->pose.position.x;
-	sumo.pos_y = pos->pose.position.y;
-	sumo.pos_z = pos->pose.position.z;
-	sumo.ori_x = pos->pose.orientation.x;
-	sumo.ori_y = pos->pose.orientation.y;
-	sumo.ori_z = pos->pose.orientation.z;
-	sumo.ori_w = pos->pose.orientation.w;
+	sumo.pos_x = pos->transform.translation.x;
+	sumo.pos_y = pos->transform.translation.y;
+	sumo.pos_z = pos->transform.translation.z;
+	sumo.ori_x = pos->transform.rotation.x;
+	sumo.ori_y = pos->transform.rotation.y;
+	sumo.ori_z = pos->transform.rotation.z;
+	sumo.ori_w = pos->transform.rotation.w;
 
-	tf::Quaternion q(pos->pose.orientation.x,pos->pose.orientation.y,pos->pose.orientation.z,pos->pose.orientation.w);
+	tf::Quaternion q(pos->transform.rotation.x,pos->transform.rotation.y,pos->transform.rotation.z,pos->transform.rotation.w);
 	tf::Matrix3x3 m(q);
 	m.getRPY(sumo.roll, sumo.pitch, sumo.yaw_RAD);
 	sumo.yaw = sumo.yaw_RAD*(180/PI);
@@ -247,15 +247,15 @@ int main(int argc, char** argv)
 	ros::Publisher land_pub_bebop3_;	
 	ros::Publisher cmd_vel_pub_bebop3_;
 
-	// Initialize subscribers
-	// For bebop1, Drone IP = 5 
-	ros::Subscriber subPose1 = nh_.subscribe("/UAV_IP5/pose", 1000, getPosBebop1);
-	// For bebop2, Drone IP = 6
-	ros::Subscriber subPose2 = nh_.subscribe("/UAV_IP6/pose", 1000, getPosBebop2);
-	// For bebop3, Drone IP = 8
-	ros::Subscriber subPose3 = nh_.subscribe("/UAV_IP7/pose", 1000, getPosBebop3);
-	// For sumo
-	ros::Subscriber subPose4 = nh_.subscribe("/UAV_IP8/pose", 1000, getPosSumo);
+	// Get actual positional data from motiv	
+	// For bebop1
+	ros::Subscriber subPoseActual1 = nh_.subscribe("/vicon/bebop_01/bebop_01", 1000, getPosBebop1);
+	// For bebop2
+	ros::Subscriber subPoseActual2 = nh_.subscribe("/vicon/bebop_02/bebop_02", 1000, getPosBebop2);
+	// For bebop3
+	ros::Subscriber subPoseActual3 = nh_.subscribe("/vicon/bebop_03/bebop_03", 1000, getPosBebop3);
+	// For bebop4
+	ros::Subscriber subPoseActual4 = nh_.subscribe("/vicon/bebop_04/bebop_04", 1000, getPosSumo);
 	
 	// Subscribe to joy node
 	ros::Subscriber joy_controller = nh_.subscribe("/joy", 1000, getJoy);
