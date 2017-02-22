@@ -137,15 +137,15 @@ void getPosBebop1(const geometry_msgs::PoseStamped::ConstPtr& pos)
 
 void getPosBebop2(const geometry_msgs::PoseStamped::ConstPtr& pos)
 {
-	bebop2.pos_x = pos->pose.position.x;
-	bebop2.pos_y = pos->pose.position.y;
-	bebop2.pos_z = pos->pose.position.z;
-	bebop2.ori_x = pos->pose.orientation.x;
-	bebop2.ori_y = pos->pose.orientation.y;
-	bebop2.ori_z = pos->pose.orientation.z;
-	bebop2.ori_w = pos->pose.orientation.w;
+	bebop2.pos_x = pos->transform.translation.x;
+	bebop2.pos_y = pos->transform.translation.y;
+	bebop2.pos_z = pos->transform.translation.z;
+	bebop2.ori_x = pos->transform.rotation.x;
+	bebop2.ori_y = pos->transform.rotation.y;
+	bebop2.ori_z = pos->transform.rotation.z;
+	bebop2.ori_w = pos->transform.rotation.w;
 
-	tf::Quaternion q(pos->pose.orientation.x,pos->pose.orientation.y,pos->pose.orientation.z,pos->pose.orientation.w);
+	tf::Quaternion q(pos->transform.rotation.x,pos->transform.rotation.y,pos->transform.rotation.z,pos->transform.rotation.w);
 	tf::Matrix3x3 m(q);
 	m.getRPY(bebop2.roll, bebop2.pitch, bebop2.yaw_RAD);
 	bebop2.yaw = bebop2.yaw_RAD*(180/PI);
@@ -153,15 +153,15 @@ void getPosBebop2(const geometry_msgs::PoseStamped::ConstPtr& pos)
 
 void getPosBebop3(const geometry_msgs::PoseStamped::ConstPtr& pos)
 {
-	bebop3.pos_x = pos->pose.position.x;
-	bebop3.pos_y = pos->pose.position.y;
-	bebop3.pos_z = pos->pose.position.z;
-	bebop3.ori_x = pos->pose.orientation.x;
-	bebop3.ori_y = pos->pose.orientation.y;
-	bebop3.ori_z = pos->pose.orientation.z;
-	bebop3.ori_w = pos->pose.orientation.w;
+	bebop3.pos_x = pos->transform.translation.x;
+	bebop3.pos_y = pos->transform.translation.y;
+	bebop3.pos_z = pos->transform.translation.z;
+	bebop3.ori_x = pos->transform.rotation.x;
+	bebop3.ori_y = pos->transform.rotation.y;
+	bebop3.ori_z = pos->transform.rotation.z;
+	bebop3.ori_w = pos->transform.rotation.w;
 
-	tf::Quaternion q(pos->pose.orientation.x,pos->pose.orientation.y,pos->pose.orientation.z,pos->pose.orientation.w);
+	tf::Quaternion q(pos->transform.rotation.x,pos->transform.rotation.y,pos->transform.rotation.z,pos->transform.rotation.w);
 	tf::Matrix3x3 m(q);
 	m.getRPY(bebop3.roll, bebop3.pitch, bebop3.yaw_RAD);
 	bebop3.yaw = bebop3.yaw_RAD*(180/PI);
@@ -169,15 +169,15 @@ void getPosBebop3(const geometry_msgs::PoseStamped::ConstPtr& pos)
 
 void getPosBebop4(const geometry_msgs::PoseStamped::ConstPtr& pos)
 {
-	bebop4.pos_x = pos->pose.position.x;
-	bebop4.pos_y = pos->pose.position.y;
-	bebop4.pos_z = pos->pose.position.z;
-	bebop4.ori_x = pos->pose.orientation.x;
-	bebop4.ori_y = pos->pose.orientation.y;
-	bebop4.ori_z = pos->pose.orientation.z;
-	bebop4.ori_w = pos->pose.orientation.w;
+	bebop4.pos_x = pos->transform.translation.x;
+	bebop4.pos_y = pos->transform.translation.y;
+	bebop4.pos_z = pos->transform.translation.z;
+	bebop4.ori_x = pos->transform.rotation.x;
+	bebop4.ori_y = pos->transform.rotation.y;
+	bebop4.ori_z = pos->transform.rotation.z;
+	bebop4.ori_w = pos->transform.rotation.w;
 
-	tf::Quaternion q(pos->pose.orientation.x,pos->pose.orientation.y,pos->pose.orientation.z,pos->pose.orientation.w);
+	tf::Quaternion q(pos->transform.rotation.x,pos->transform.rotation.y,pos->transform.rotation.z,pos->transform.rotation.w);
 	tf::Matrix3x3 m(q);
 	m.getRPY(bebop4.roll, bebop4.pitch, bebop4.yaw_RAD);
 	bebop4.yaw = bebop4.yaw_RAD*(180/PI);
@@ -352,13 +352,13 @@ int main(int argc, char** argv)
 	
 	// Get actual positional data from motiv	
 	// For bebop1
-	ros::Subscriber subPoseActual1 = nh_.subscribe("/UAV_IP5/pose", 1000, getPosBebop1);
+	ros::Subscriber subPoseActual1 = nh_.subscribe("/vicon/bebop_01/bebop_01", 1000, getPosBebop1);
 	// For bebop2
-	ros::Subscriber subPoseActual2 = nh_.subscribe("/UAV_IP6/pose", 1000, getPosBebop2);
+	ros::Subscriber subPoseActual2 = nh_.subscribe("/vicon/bebop_02/bebop_02", 1000, getPosBebop2);
 	// For bebop3
-	ros::Subscriber subPoseActual3 = nh_.subscribe("/UAV_IP7/pose", 1000, getPosBebop3);
+	ros::Subscriber subPoseActual3 = nh_.subscribe("/vicon/bebop_03/bebop_03", 1000, getPosBebop3);
 	// For bebop4
-	ros::Subscriber subPoseActual4 = nh_.subscribe("/UAV_IP8/pose", 1000, getPosBebop4);
+	ros::Subscriber subPoseActual4 = nh_.subscribe("/vicon/bebop_04/bebop_04", 1000, getPosBebop4);
 	
 	// Subscribe to joy node
 	ros::Subscriber joy_controller = nh_.subscribe("/joy", 1000, getJoy);
