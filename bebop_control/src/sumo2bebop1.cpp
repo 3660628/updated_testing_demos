@@ -114,8 +114,8 @@ bool altYawControl = true;
 // Get position info from mocap for bebop1
 void getPosBebop1(const geometry_msgs::TransformStamped::ConstPtr& pos)
 {
-	bebop1.pos_x = pos->transform.translation.x;
-	bebop1.pos_y = pos->transform.translation.y;
+	bebop1.pos_x = pos->transform.translation.y;
+	bebop1.pos_y = pos->transform.translation.x;
 	bebop1.pos_z = pos->transform.translation.z;
 	bebop1.ori_x = pos->transform.rotation.x;
 	bebop1.ori_y = pos->transform.rotation.y;
@@ -130,8 +130,8 @@ void getPosBebop1(const geometry_msgs::TransformStamped::ConstPtr& pos)
 
 void getPosBebop2(const geometry_msgs::TransformStamped::ConstPtr& pos)
 {
-	bebop2.pos_x = pos->transform.translation.x;
-	bebop2.pos_y = pos->transform.translation.y;
+	bebop2.pos_x = pos->transform.translation.y;
+	bebop2.pos_y = pos->transform.translation.x;
 	bebop2.pos_z = pos->transform.translation.z;
 	bebop2.ori_x = pos->transform.rotation.x;
 	bebop2.ori_y = pos->transform.rotation.y;
@@ -146,8 +146,8 @@ void getPosBebop2(const geometry_msgs::TransformStamped::ConstPtr& pos)
 
 void getPosBebop3(const geometry_msgs::TransformStamped::ConstPtr& pos)
 {
-	bebop3.pos_x = pos->transform.translation.x;
-	bebop3.pos_y = pos->transform.translation.y;
+	bebop3.pos_x = pos->transform.translation.y;
+	bebop3.pos_y = pos->transform.translation.x;
 	bebop3.pos_z = pos->transform.translation.z;
 	bebop3.ori_x = pos->transform.rotation.x;
 	bebop3.ori_y = pos->transform.rotation.y;
@@ -162,8 +162,8 @@ void getPosBebop3(const geometry_msgs::TransformStamped::ConstPtr& pos)
 
 void getPosSumo(const geometry_msgs::TransformStamped::ConstPtr& pos)
 {
-	sumo.pos_x = pos->transform.translation.x;
-	sumo.pos_y = pos->transform.translation.y;
+	sumo.pos_x = pos->transform.translation.y;
+	sumo.pos_y = pos->transform.translation.x;
 	sumo.pos_z = pos->transform.translation.z;
 	sumo.ori_x = pos->transform.rotation.x;
 	sumo.ori_y = pos->transform.rotation.y;
